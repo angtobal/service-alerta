@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -49,7 +50,8 @@ public class SismoService extends EventoTemplate<Sismo>{
   		Map<String,Object> result = new HashMap<String,Object>();
   		UsuarioBean[] usuarios = obtenerListaUsuarioCercanoAlSismo(this.sismo);
   		for(UsuarioBean usuario : usuarios){
-  			System.out.println("Alertando: " + usuario.getCelular());
+  			MensajeBean mensaje = MessageFlyweight.getMensaje(calcularTipoAlerta(usuario, evento));
+  			System.out.println("Alertando a usuario: "+usuario.getNombre()+ " con mensaje" + mensaje.getText());
   		}
   		result.put("msg", new MensajeBean("Alertando en segundo plano."));
   	}
@@ -112,7 +114,14 @@ public class SismoService extends EventoTemplate<Sismo>{
 		return result;
 	}
 
-	
+	private String calcularTipoAlerta(UsuarioBean usuario, Sismo sismo){
+		String[] tipos = new String[3];
+		tipos[0]="alerta-baja";
+		tipos[1]="alerta-media";
+		tipos[2]="alerta-alta";
+		Random r = new Random();
+		return tipos[r.nextInt(3)];
+	}
 
 	
 }
