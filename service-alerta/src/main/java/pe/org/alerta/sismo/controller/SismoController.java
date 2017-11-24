@@ -22,7 +22,8 @@ public class SismoController {
 	@RequestMapping(value = "/registro")
 	@ResponseBody
 	public Map<String, Object> registro(Sismo sismo) throws Exception {
-		return registroService.registraSismo(sismo);
+		return registroService.notificarEvento(sismo);
+		//return registroService.registraSismo(sismo);
 	}
 	
 	@RequestMapping(value = "/lista")
@@ -31,11 +32,11 @@ public class SismoController {
 		return registroService.listaSismo(sismo);
 	}
 	
-	@RequestMapping(value = "/notificar")
-	@ResponseBody
-	public Map<String, Object> notificarSismo(Sismo sismo) throws Exception {
-		return registroService.notificarSismo(sismo);
-	}
+//	@RequestMapping(value = "/notificar")
+//	@ResponseBody
+//	public Map<String, Object> notificarSismo(Sismo sismo) throws Exception {
+//		return registroService.notificarSismo(sismo);
+//	}
 	
 	
 	@RequestMapping(value = "/disponible")

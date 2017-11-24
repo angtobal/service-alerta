@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.format.annotation.DateTimeFormat;
 
-public class Sismo {
+public class Sismo{
 	
 	@Id
 	private String id;
