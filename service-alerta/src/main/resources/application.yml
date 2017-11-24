@@ -1,0 +1,20 @@
+server:
+  port: 9000
+  contextPath: /alerta
+endpoints:
+  shutdown:
+    enabled: true
+  restart:
+    enabled: true
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+spring:
+  config:
+    name: service-alerta
+  application:
+    name: service-alerta
+management:
+  security:
+    enabled: false
